@@ -31,23 +31,24 @@ export default function RoomList({ onSelectRoom }) {
                   ? "bg-emerald-50 text-emerald-600 border-emerald-200"
                   : "bg-red-50 text-red-500 border-red-200"
               }`}>
-                {room.isAvailable ? "Available" : "Reserved"}
+                {room.isAvailable ? "Available now" : "Occupied now"}
               </span>
             </div>
 
             <div className="flex items-center justify-between text-sm text-gray-500 border-t border-gray-100 pt-3">
               <span>{room.type}</span>
-              <span className="font-semibold text-gray-700">${room.pricePerNight}<span className="font-normal text-gray-400">/night</span></span>
+              <span className="font-semibold text-gray-700">
+                ${room.pricePerNight}
+                <span className="font-normal text-gray-400">/night</span>
+              </span>
             </div>
 
-            {room.isAvailable && (
-              <button
-                onClick={() => onSelectRoom(room)}
-                className="w-full mt-1 bg-gray-900 hover:bg-gray-700 text-white text-sm font-medium py-2.5 rounded-lg transition-colors"
-              >
-                Book this room
-              </button>
-            )}
+            <button
+              onClick={() => onSelectRoom(room)}
+              className="w-full mt-1 bg-gray-900 hover:bg-gray-700 text-white text-sm font-medium py-2.5 rounded-lg transition-colors"
+            >
+              Book this room
+            </button>
           </div>
         ))}
       </div>
