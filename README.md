@@ -55,12 +55,3 @@ hotel-frontend/
 ## Notes
 
 - API base URL is hardcoded to `http://localhost:5138` — update in component files if deploying
-```
-
----
-
-Save `README.md` in the root of each project folder. One thing to also add to `HotelApi/.gitignore` before pushing — make sure `hotel.db` is ignored:
-```
-hotel.db
-hotel.db-shm
-hotel.db-wal
