@@ -48,13 +48,13 @@ hotel-frontend/
 - Active reservations list with cancel button
 - Fully responsive layout
 
-# Screenshot of the main page
+## Screenshot of the main page
 ![Screenshot of the result](image.png)
 
-# Screenshot of the register form 
+## Screenshot of the register form 
 ![Screenshot of the form](image-1.png)
 
-# Screenshot of the current reservations
+## Screenshot of the current reservations
 ![Screenshot of current reservations](image-2.png)
 ## Notes
 
