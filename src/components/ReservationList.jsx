@@ -15,32 +15,51 @@ export default function ReservationList({ refresh }) {
     setReservations(prev => prev.filter(r => r.id !== id));
   };
 
-  if (reservations.length === 0)
-    return <p className="text-gray-500 text-sm mt-2">No reservations yet.</p>;
-
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4 text-gray-700">Current Reservations</h2>
-      <div className="flex flex-col gap-3">
-        {reservations.map(r => (
-          <div key={r.id} className="bg-white rounded-lg shadow p-4 flex justify-between items-center">
-            <div>
-              <p className="font-semibold text-gray-800">{r.guestName}
-                <span className="ml-2 text-sm font-normal text-gray-500">{r.guestEmail}</span>
-              </p>
-              <p className="text-sm text-gray-600">
-                Room {r.room.roomNumber} ({r.room.type}) — {new Date(r.checkIn).toLocaleDateString()} to {new Date(r.checkOut).toLocaleDateString()}
-              </p>
-            </div>
-            <button
-              onClick={() => handleCancel(r.id)}
-              className="bg-red-100 hover:bg-red-200 text-red-700 text-sm font-medium px-3 py-1.5 rounded-lg transition"
-            >
-              Cancel
-            </button>
-          </div>
-        ))}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-gray-800">Current Reservations</h2>
+        <p className="text-sm text-gray-400 mt-0.5">
+          {reservations.length === 0 ? "No active reservations" : `${reservations.length} active`}
+        </p>
       </div>
+
+      {reservations.length === 0 ? (
+        <div className="bg-white border border-dashed border-gray-200 rounded-xl px-6 py-10 text-center">
+          <p className="text-gray-300 text-3xl mb-2">⊘</p>
+          <p className="text-sm text-gray-400">No reservations yet</p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3">
+          {reservations.map(r => (
+            <div
+              key={r.id}
+              className="bg-white border border-gray-200 rounded-xl px-5 py-4 flex items-center justify-between hover:shadow-sm transition-shadow"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-sm font-bold text-gray-500 flex-shrink-0">
+                  {r.room.roomNumber}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {r.guestName}
+                    <span className="ml-2 font-normal text-gray-400 text-xs">{r.guestEmail}</span>
+                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    {r.room.type} · {new Date(r.checkIn).toLocaleDateString()} → {new Date(r.checkOut).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleCancel(r.id)}
+                className="text-xs font-medium text-gray-400 hover:text-red-500 border border-gray-200 hover:border-red-200 px-3 py-1.5 rounded-lg transition-colors ml-4 flex-shrink-0"
+              >
+                Cancel
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
